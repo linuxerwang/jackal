@@ -12,9 +12,8 @@ import (
 	"sync"
 
 	"github.com/ortuman/jackal/cluster"
-	"github.com/ortuman/jackal/pool"
-
 	"github.com/ortuman/jackal/log"
+	"github.com/ortuman/jackal/pool"
 	"github.com/ortuman/jackal/storage"
 	"github.com/ortuman/jackal/stream"
 	"github.com/ortuman/jackal/util"
@@ -161,7 +160,7 @@ func (r *Router) Bind(stm stream.C2S) {
 		m := &clusterMessage{
 			typ:  messageBindType,
 			node: r.cluster.LocalNode(),
-			jid:  stm.JID(),
+			jids: []*jid.JID{stm.JID()},
 		}
 		enc := gob.NewEncoder(buf)
 		m.toGob(enc)
@@ -203,7 +202,7 @@ func (r *Router) Unbind(stm stream.C2S) {
 		m := &clusterMessage{
 			typ:  messageUnbindType,
 			node: r.cluster.LocalNode(),
-			jid:  stm.JID(),
+			jids: []*jid.JID{stm.JID()},
 		}
 		enc := gob.NewEncoder(buf)
 		m.toGob(enc)

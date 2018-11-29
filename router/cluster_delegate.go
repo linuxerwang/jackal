@@ -24,10 +24,8 @@ func (d *clusterDelegate) NotifyMessage(msg []byte) {
 
 	switch cm.typ {
 	case messageBindType:
-		log.Infof("binded stream with jid %s at %s", cm.jid.String(), cm.node)
 		break
 	case messageUnbindType:
-		log.Infof("unbinded stream with jid %s at %s", cm.jid.String(), cm.node)
 		break
 	case messageSendType:
 		break
