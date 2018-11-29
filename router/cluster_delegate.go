@@ -6,9 +6,6 @@
 package router
 
 import (
-	"bytes"
-	"encoding/gob"
-
 	"github.com/ortuman/jackal/cluster"
 	"github.com/ortuman/jackal/log"
 )
@@ -18,18 +15,6 @@ type clusterDelegate struct {
 }
 
 func (d *clusterDelegate) NotifyMessage(msg []byte) {
-	dec := gob.NewDecoder(bytes.NewReader(msg))
-	cm := &clusterMessage{}
-	cm.fromGob(dec)
-
-	switch cm.typ {
-	case messageBindType:
-		break
-	case messageUnbindType:
-		break
-	case messageSendType:
-		break
-	}
 }
 
 func (d *clusterDelegate) NodeJoined(node *cluster.Node) {
